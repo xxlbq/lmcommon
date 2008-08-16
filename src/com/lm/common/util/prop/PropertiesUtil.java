@@ -3,6 +3,7 @@ package com.lm.common.util.prop;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Enumeration;
+import java.util.List;
 import java.util.Properties;
 import java.util.ResourceBundle;
 
@@ -34,6 +35,7 @@ public class PropertiesUtil {
 	public PropertiesUtil(String propFullPath){
 		
 		this.propFullPath = propFullPath;
+		load();
 	}
 
 	public String getPropFullPath() {
@@ -47,12 +49,13 @@ public class PropertiesUtil {
 	
 	public void load(){
 		
-		PropertyConfigurator.configure("E:\\java\\EclipseWorkSpace20080201\\lm-common-util\\src\\log4j.properties");
+//		PropertyConfigurator.configure("E:\\java\\EclipseWorkSpace20080201\\lm-common-util\\src\\log4j.properties");
 		if(StringCommonUtil.isEmpty(propFullPath)){
 			log.error("init Error : properties path is Null ! ");
 		}
 		try {
 			config = new PropertiesConfiguration(propFullPath);
+			config.getList("");
 		} catch (ConfigurationException e) {
 			log.error("properties ["+propFullPath+"]init Error ! ", e);
 		}
@@ -70,7 +73,10 @@ public class PropertiesUtil {
 		return config.getInt(key);
 	}
 	
-	
+	@SuppressWarnings("unchecked")
+	public List<String> getStringListValue(String key){
+		return config.getList(key);
+	}
 	
 //	public static String getPropertiesWithResourceBundle(String propertyKey)
 //	throws Exception{
