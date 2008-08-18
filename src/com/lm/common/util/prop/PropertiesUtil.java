@@ -73,6 +73,10 @@ public class PropertiesUtil {
 		return config.getInt(key);
 	}
 	
+	public boolean getBooleanValue(String key){
+		return config.getBoolean(key);
+	}
+	
 	@SuppressWarnings("unchecked")
 	public List<String> getStringListValue(String key){
 		return config.getList(key);
