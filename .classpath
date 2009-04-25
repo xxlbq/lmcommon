@@ -13,5 +13,6 @@
 	<classpathentry kind="lib" path="lib/xwork-2.0.1.jar"/>
 	<classpathentry kind="lib" path="lib/jfreechart/jcommon-1.0.12.jar"/>
 	<classpathentry kind="lib" path="lib/jfreechart/jfreechart-1.0.8a.jar"/>
+	<classpathentry kind="lib" path="lib/jmx/jdmkrt.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
