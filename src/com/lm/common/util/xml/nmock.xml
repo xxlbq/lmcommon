@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<NMock>
+
+	<config>
+        <ccp>USD/JPY</ccp>
+        <clz>jp.emcom.adv.c365.gws.nmock.rate.generator.SimpleRateGenerator</clz>
+        <interval>300</interval>
+        <parameter>
+            <entry><key>spred</key>   <value>10</value></entry>
+            <entry><key>maxprice</key><value>160</value></entry>
+            <entry><key>minprice</key><value>150</value></entry>
+            <entry><key>scale</key>   <value>4</value></entry>
+        </parameter>
+    </config>
+    
+	<config>
+        <ccp>EUR/JPY</ccp>
+        <clz>jp.emcom.adv.c365.gws.nmock.rate.generator.SimpleRateGenerator</clz>
+        <interval>300</interval>
+        <parameter>
+            <entry><key>spred</key>   <value>10</value></entry>
+            <entry><key>maxprice</key><value>160</value></entry>
+            <entry><key>minprice</key><value>150</value></entry>
+            <entry><key>scale</key>   <value>4</value></entry>
+        </parameter>
+    </config>
+    
+    <config>
+        <ccp>GBP/JPY</ccp>
+        <clz>jp.emcom.adv.c365.gws.nmock.rate.generator.SimpleRateGenerator</clz>
+        <interval>300</interval>
+        <parameter>
+            <entry><key>spred</key>   <value>10</value></entry>
+            <entry><key>maxprice</key><value>160</value></entry>
+            <entry><key>minprice</key><value>150</value></entry>
+            <entry><key>scale</key>   <value>4</value></entry>
+        </parameter>
+    </config>
+
+    <config>
+        <ccp>AUD/JPY</ccp>
+        <clz>jp.emcom.adv.c365.gws.nmock.rate.generator.SimpleRateGenerator</clz>
+        <interval>300</interval>
+        <parameter>
+                <entry><key>spred</key>   <value>10</value></entry>
+                <entry><key>maxprice</key><value>160</value></entry>
+                <entry><key>minprice</key><value>150</value></entry>
+                <entry><key>scale</key>   <value>4</value></entry>
+        </parameter>
+    </config>
+
+
+    <config>
+        <ccp>NZD/JPY</ccp>
+        <clz>jp.emcom.adv.c365.gws.nmock.rate.generator.SimpleRateGenerator</clz>
+        <interval>300</interval>
+        <parameter>
+            <entry><key>spred</key>   <value>10</value></entry>
+            <entry><key>maxprice</key><value>65</value></entry>
+            <entry><key>minprice</key><value>64</value></entry>
+            <entry><key>scale</key>   <value>3</value></entry>
+        </parameter>
+    </config>
+
+
+    <config>
+        <ccp>CHF/JPY</ccp>
+        <clz>jp.emcom.adv.c365.gws.nmock.rate.generator.SimpleRateGenerator</clz>
+        <interval>300</interval>
+        <parameter>
+            <entry><key>spred</key>   <value>10</value></entry>
+            <entry><key>maxprice</key><value>89</value></entry>
+            <entry><key>minprice</key><value>88</value></entry>
+            <entry><key>scale</key>   <value>3</value></entry>
+        </parameter>
+    </config>
+
+
+    <config>
+        <ccp>CAD/JPY</ccp>
+        <clz>jp.emcom.adv.c365.gws.nmock.rate.generator.SimpleRateGenerator</clz>
+        <interval>300</interval>
+        <parameter>
+            <entry><key>spred</key>   <value>10</value></entry>
+            <entry><key>maxprice</key><value>89</value></entry>
+            <entry><key>minprice</key><value>88</value></entry>
+            <entry><key>scale</key>   <value>3</value></entry>
+        </parameter>
+    </config>
+
+
+    <config>
+        <ccp>ZAR/JPY</ccp>
+        <clz>jp.emcom.adv.c365.gws.nmock.rate.generator.SimpleRateGenerator</clz>
+        <interval>300</interval>
+        <parameter>
+            <entry><key>spred</key>   <value>5</value></entry>
+            <entry><key>maxprice</key><value>103</value></entry>
+            <entry><key>minprice</key><value>101</value></entry>
+            <entry><key>scale</key>   <value>5</value></entry>
+        </parameter>
+    </config>
+
+
+    <config>
+        <ccp>TRY/JPY</ccp>
+        <clz>jp.emcom.adv.c365.gws.nmock.rate.generator.SimpleRateGenerator</clz>
+        <interval>1000</interval>
+        <parameter>
+            <entry><key>spred</key>   <value>8</value></entry>
+            <entry><key>maxprice</key><value>64</value></entry>
+            <entry><key>minprice</key><value>63</value></entry>
+            <entry><key>scale</key>   <value>3</value></entry>
+        </parameter>
+    </config>
+
+
+    <config>
+        <ccp>EUR/USD</ccp>
+        <clz>jp.emcom.adv.c365.gws.nmock.rate.generator.SimpleRateGenerator</clz>
+        <interval>300</interval>
+        <parameter>
+            <entry><key>spred</key>   <value>4</value></entry>
+            <entry><key>maxprice</key><value>5.002</value></entry>
+            <entry><key>minprice</key><value>5</value></entry>
+            <entry><key>scale</key>   <value>5</value></entry>
+        </parameter>
+    </config>
+
+
+
+    <config>
+        <ccp>GBP/NZD</ccp>
+        <clz>jp.emcom.adv.c365.gws.nmock.rate.generator.SimpleRateGenerator</clz>
+        <interval>300</interval>
+        <parameter>
+            <entry><key>spred</key>   <value>40</value></entry>
+            <entry><key>maxprice</key><value>3</value></entry>
+            <entry><key>minprice</key><value>2</value></entry>
+            <entry><key>scale</key>   <value>5</value></entry>
+        </parameter>
+    </config>
+
+
+
+    <config>
+        <ccp>GBP/CHF</ccp>
+        <clz>jp.emcom.adv.c365.gws.nmock.rate.generator.SimpleRateGenerator</clz>
+        <interval>300</interval>
+        <parameter>
+            <entry><key>spred</key>   <value>40</value></entry>
+            <entry><key>maxprice</key><value>2</value></entry>
+            <entry><key>minprice</key><value>1</value></entry>
+            <entry><key>scale</key>   <value>5</value></entry>
+        </parameter>
+    </config>
+
+
+
+    <config>
+        <ccp>USD/CHF</ccp>
+        <clz>jp.emcom.adv.c365.gws.nmock.rate.generator.SimpleRateGenerator</clz>
+        <interval>300</interval>
+        <parameter>
+            <entry><key>spred</key>   <value>15</value></entry>
+            <entry><key>maxprice</key><value>1.5</value></entry>
+            <entry><key>minprice</key><value>1</value></entry>
+            <entry><key>scale</key>   <value>5</value></entry>
+        </parameter>
+    </config>
+
+</NMock>
+
