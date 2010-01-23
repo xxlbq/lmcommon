@@ -3,13 +3,11 @@ package com.lm.common.jmx.demo.hello;
 import java.lang.management.ManagementFactory;
 
 import javax.management.MBeanServer;
-import javax.management.MBeanServerFactory;
 import javax.management.ObjectName;
 
 import com.lm.common.jmx.demo.dynamic.HelloDynamic;
 import com.lm.common.jmx.demo.jack.HelloListener;
 import com.lm.common.jmx.demo.jack.Jack;
-import com.sun.jdmk.comm.HtmlAdaptorServer;
 
 
 
@@ -31,7 +29,7 @@ public class HelloAgent {
         
         
         Jack jack = new Jack();    //重点    
-        server.registerMBean(jack, new ObjectName("HelloAgent:name=jack"));    //重点    
+        server.registerMBean(jack, new ObjectName("HelloAgent:name=jack,port=8084"));    //重点    
         jack.addNotificationListener(new HelloListener(), null, hb);    //重点    
         
         

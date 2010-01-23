@@ -1,6 +1,5 @@
 package com.lm.common.thread;
 
-import java.util.concurrent.ThreadPoolExecutor;
 
 public class LmThreadPool {
 	

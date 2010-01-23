@@ -1,15 +1,5 @@
 package com.lm.common.jmx.demo.hello;
 
-import java.lang.management.ManagementFactory;
-
-import javax.management.InstanceAlreadyExistsException;
-import javax.management.MBeanRegistrationException;
-import javax.management.MBeanServer;
-import javax.management.MalformedObjectNameException;
-import javax.management.NotCompliantMBeanException;
-import javax.management.ObjectName;
-
-import com.sun.jdmk.comm.HtmlAdaptorServer;
 
 public class Hello implements HelloMBean ,Runnable,Hold {    
 	

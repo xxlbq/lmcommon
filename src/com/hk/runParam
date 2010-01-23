@@ -1,0 +1,36 @@
+
+同时注文（begin together）
+
+example :
+
+-host http://10.4.9.82 -port 80 -mode ALL -orderTime 4 -rateinterval 1000 -order 1 -ordernum 1 -rate 1 -starttime 13:00 -type EMFX -ccpair EUR/JPY -loginthread 1 -orderType 1
+
+
+
+
+逐一注文（begin afger end）
+example :
+
+-host http://10.4.9.82 -port 80 -mode ALL -orderTime 4 -rateinterval 1000 -order 1 -ordernum 1 -rate 1 -starttime 13:00 -type EMFX -ccpair EUR/JPY -loginthread 1 -orderType 1
+
+
+
+
+
+
+
+
+
+
+【customerid：00060065】
+loginId：   FFF00066
+pwd：		111111111111
+
+【customerid：00060095】
+loginId：   jiangys
+pwd：		111111111111
+
+【customerid：00060099】
+loginId：   hujf2
+pwd：		111111111111
+
