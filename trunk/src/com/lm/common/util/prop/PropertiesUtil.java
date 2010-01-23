@@ -1,17 +1,11 @@
 package com.lm.common.util.prop;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Enumeration;
 import java.util.List;
-import java.util.Properties;
-import java.util.ResourceBundle;
 
 import org.apache.commons.configuration.Configuration;
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.PropertiesConfiguration;
 import org.apache.log4j.Logger;
-import org.apache.log4j.PropertyConfigurator;
 
 import com.lm.common.util.str.StringCommonUtil;
 

@@ -15,7 +15,6 @@ import javax.management.MBeanOperationInfo;
 import javax.management.MBeanParameterInfo;
 import javax.management.ReflectionException;
 
-import com.lm.common.jmx.demo.hello.HelloMBean;
 import com.lm.common.jmx.demo.hello.Hold;
 
 public class HelloDynamic implements DynamicMBean ,Hold{
