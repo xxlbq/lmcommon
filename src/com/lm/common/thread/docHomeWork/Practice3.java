@@ -49,7 +49,8 @@ public class Practice3 {
 //	ConcurrentMap<Integer,AtomicBoolean>  temp= new ConcurrentHashMap<Integer,AtomicBoolean>();
 	private HashMap<Integer,AtomicBoolean> temp = new HashMap<Integer,AtomicBoolean>();
 	
-	ConcurrentMap<Integer,Future<Integer>> results = new ConcurrentHashMap<Integer,Future<Integer>>();
+//	ConcurrentMap<Integer,Future<Integer>> results = new ConcurrentHashMap<Integer,Future<Integer>>();
+	ConcurrentMap<Integer,Integer> results = new ConcurrentHashMap<Integer,Integer>();
 //	AtomicInteger
 	public static AtomicBoolean ai = new AtomicBoolean(false);
 //	public ReentrantLock lock = new ReentrantLock();
@@ -58,82 +59,78 @@ public class Practice3 {
 	
 	private HashMap<Integer, AtomicBoolean> flags = new HashMap<Integer, AtomicBoolean>();
 //	volatile
-//	public Integer calculate(Integer param) throws Exception{
+	
+	
+	public Integer calculate(Integer param) throws Exception{
+		
+	    if(results.get(param) == null) {
+	    	 
+	    	Integer temp = results.putIfAbsent(param,Integer.MAX_VALUE);
+	    	if(temp == null){
+	    		Integer ing= doCalculate(param);
+	    		results.putIfAbsent(param,ing);
+	    		return ing ;
+	    	}else{
+	    		results.put(param, temp);
+	    		return temp;
+	    	}
+
+		    
+	    }
+
+	    return results.get(param);
+		
+	
 //		
-//		
-//		
-//		
-//	    if(results.get(param) == null) {
-//	    	if(!flags.containsKey(param)){
-//	    		flags.put(param, new AtomicBoolean(true));
-//	    	}
-//	    	if(flags.get(param).getAndSet(false)){
-//			    Integer result = doCalculate(param);
-//			    results.put(param, result);
-//			    
-//			    return result;
-//	    	}
-//		    
-//	    }
+//		if(temp.containsKey(param)){
+//			return results.get(param);
+//		}else{
+//			temp.put(param,new AtomicBoolean(true));
+//			
+//			if(temp.get(param).getAndSet(false)){
+//				Integer result = doCalculate(param);
+//				results.put(param, result);
 //
-//	    if(null == results.get(param)
-//	    		&& flags.containsKey(param)){
-//	    	System.out.println("======== null  ");
-//	    }
+//			}
 //
-//	    return results.get(param);
-//		
-//	
-////		
-////		if(temp.containsKey(param)){
-////			return results.get(param);
-////		}else{
-////			temp.put(param,new AtomicBoolean(true));
-////			
-////			if(temp.get(param).getAndSet(false)){
-////				Integer result = doCalculate(param);
-////				results.put(param, result);
-////
-////			}
-////
-////			return results.get(param);
-////		}
-//	    
-//	}
+//			return results.get(param);
+//		}
+	    
+	}
 
 
 	
-	public Integer calculate(final Integer param) throws Exception{ 
-	    while(true) { 
-	        Future<Integer> f = results.get(param); 
-	        if(f == null) { 
-	            Callable<Integer> eval = new Callable<Integer>() { 
-	                public Integer call() throws Exception { 
-	                    return doCalculate(param); 
-	                } 
-	            }; 
-	            FutureTask<Integer> ft = new FutureTask<Integer>(eval); 
-	            f = results.putIfAbsent(param, ft); 
-	            if(f == null) { 
-	                f = ft; 
-	                ft.run(); 
-	            } 
-	        } 
-	         
-	        try { 
-	            return f.get(); 
-	        } catch(CancellationException e) { 
-	            results.remove(param, f); 
-	        } catch(ExecutionException e) { 
-	            try {
-					throw e.getCause();
-				} catch (Throwable e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} 
-	        } 
-	    } 
-	} 
+//	public Integer calculate(final Integer param) throws Exception{ 
+//	    while(true) { 
+//	        Future<Integer> f = results.get(param); 
+//	        if(f == null) { 
+//	            Callable<Integer> eval = new Callable<Integer>() { 
+//	                public Integer call() throws Exception { 
+//	                    return doCalculate(param); 
+//	                } 
+//	            }; 
+//	            FutureTask<Integer> ft = new FutureTask<Integer>(eval); 
+//	            f = results.putIfAbsent(param, ft); 
+//	            if(f == null) { 
+//	                f = ft; 
+//	                ft.run(); 
+//	            } 
+//	        } 
+//	         
+//	        try { 
+//	            return f.get(); 
+//	        } catch(CancellationException e) { 
+//	            results.remove(param, f); 
+//	        } catch(ExecutionException e) { 
+//	            try {
+//					throw e.getCause();
+//				} catch (Throwable e1) {
+//					// TODO Auto-generated catch block
+//					e1.printStackTrace();
+//				} 
+//	        } 
+//	    } 
+//	} 
 	
 	
 	private Integer doCalculate(Integer param) {
