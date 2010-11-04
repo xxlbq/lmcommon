@@ -16,5 +16,6 @@
 	<classpathentry kind="lib" path="lib/jmx/jdmkrt.jar"/>
 	<classpathentry kind="lib" path="lib/commons/commons-logging.jar"/>
 	<classpathentry kind="lib" path="lib/commons/commons-modeler-2.0.1.jar"/>
+	<classpathentry kind="lib" path="lib/xstream/xstream-1.3.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
