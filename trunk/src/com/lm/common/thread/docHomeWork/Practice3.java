@@ -49,8 +49,8 @@ public class Practice3 {
 //	ConcurrentMap<Integer,AtomicBoolean>  temp= new ConcurrentHashMap<Integer,AtomicBoolean>();
 	private HashMap<Integer,AtomicBoolean> temp = new HashMap<Integer,AtomicBoolean>();
 	
-//	ConcurrentMap<Integer,Future<Integer>> results = new ConcurrentHashMap<Integer,Future<Integer>>();
-	ConcurrentMap<Integer,Integer> results = new ConcurrentHashMap<Integer,Integer>();
+	ConcurrentMap<Integer,Future<Integer>> results = new ConcurrentHashMap<Integer,Future<Integer>>();
+//	ConcurrentMap<Integer,Integer> results = new ConcurrentHashMap<Integer,Integer>();
 //	AtomicInteger
 	public static AtomicBoolean ai = new AtomicBoolean(false);
 //	public ReentrantLock lock = new ReentrantLock();
@@ -61,24 +61,24 @@ public class Practice3 {
 //	volatile
 	
 	
-	public Integer calculate(Integer param) throws Exception{
-		
-	    if(results.get(param) == null) {
-	    	 
-	    	Integer temp = results.putIfAbsent(param,Integer.MAX_VALUE);
-	    	if(temp == null){
-	    		Integer ing= doCalculate(param);
-	    		results.putIfAbsent(param,ing);
-	    		return ing ;
-	    	}else{
-	    		results.put(param, temp);
-	    		return temp;
-	    	}
-
-		    
-	    }
-
-	    return results.get(param);
+//	public Integer calculate(Integer param) throws Exception{
+//		
+//	    if(results.get(param) == null) {
+//	    	 
+//	    	Integer temp = results.
+//	    	if(temp == null){
+//	    		Integer ing= doCalculate(param);
+//	    		results.putIfAbsent(param,ing);
+//	    		return ing ;
+//	    	}else{
+//	    		results.put(param, temp);
+//	    		return temp;
+//	    	}
+//
+//		    
+//	    }
+//
+//	    return results.get(param);
 		
 	
 //		
@@ -95,41 +95,42 @@ public class Practice3 {
 //
 //			return results.get(param);
 //		}
-	    
-	}
+//	    
+//	}
 
 
 	
-//	public Integer calculate(final Integer param) throws Exception{ 
+	public Integer calculate(final Integer param) throws Exception{ 
 //	    while(true) { 
-//	        Future<Integer> f = results.get(param); 
-//	        if(f == null) { 
-//	            Callable<Integer> eval = new Callable<Integer>() { 
-//	                public Integer call() throws Exception { 
-//	                    return doCalculate(param); 
-//	                } 
-//	            }; 
-//	            FutureTask<Integer> ft = new FutureTask<Integer>(eval); 
-//	            f = results.putIfAbsent(param, ft); 
-//	            if(f == null) { 
-//	                f = ft; 
-//	                ft.run(); 
-//	            } 
-//	        } 
-//	         
-//	        try { 
-//	            return f.get(); 
-//	        } catch(CancellationException e) { 
-//	            results.remove(param, f); 
-//	        } catch(ExecutionException e) { 
-//	            try {
-//					throw e.getCause();
-//				} catch (Throwable e1) {
-//					// TODO Auto-generated catch block
-//					e1.printStackTrace();
-//				} 
-//	        } 
-//	    } 
+	        Future<Integer> f = results.get(param); 
+	        if(f == null) { 
+	            Callable<Integer> eval = new Callable<Integer>() { 
+	                public Integer call() throws Exception { 
+	                    return doCalculate(param); 
+	                } 
+	            }; 
+	            FutureTask<Integer> ft = new FutureTask<Integer>(eval); 
+	            f = results.putIfAbsent(param, ft); 
+	            if(f == null) { 
+	                f = ft; 
+	                ft.run(); 
+	            } 
+	        } 
+	         
+	        try { 
+	            return f.get(); 
+	        } catch(CancellationException e) { 
+	            results.remove(param, f); 
+	        } catch(ExecutionException e) { 
+	            try {
+					throw e.getCause();
+				} catch (Throwable e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} 
+	        }
+			return null; 
+	    } 
 //	} 
 	
 	
