@@ -10,6 +10,8 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 import java.util.concurrent.FutureTask;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * 
@@ -50,95 +52,176 @@ public class Practice3 {
 	private HashMap<Integer,AtomicBoolean> temp = new HashMap<Integer,AtomicBoolean>();
 	
 	ConcurrentMap<Integer,Future<Integer>> results = new ConcurrentHashMap<Integer,Future<Integer>>();
-//	ConcurrentMap<Integer,Integer> results = new ConcurrentHashMap<Integer,Integer>();
+//	ConcurrentMap<Integer,Result> results = new ConcurrentHashMap<Integer,Result>();
 //	AtomicInteger
 	public static AtomicBoolean ai = new AtomicBoolean(false);
 //	public ReentrantLock lock = new ReentrantLock();
 
-	CyclicBarrier cb = new CyclicBarrier(2);
+	
 	
 	private HashMap<Integer, AtomicBoolean> flags = new HashMap<Integer, AtomicBoolean>();
 //	volatile
 	
 	
+	
 //	public Integer calculate(Integer param) throws Exception{
+//	    Integer result = results.get(param);
+//	    if(result != null) {
+//	        return result;
+//	    }
+//	    result = doCalculate(param);
+//	    results.put(param, result);
+//	    return result;
+//	}
+	
+	class Result{
+		private Integer res ;
+		private Thread cal ;
+		
+		public Thread getCal() {
+			return cal;
+		}
+		public void setCal(Thread cal) {
+			this.cal = cal;
+		}
+		
+		public Result() {}
+		public Result(Integer value) {
+			res = value;
+		}
+		public Integer getResult() {
+			return res;
+		}
+		public void setResult(Integer result){
+			this.res = result;
+		}
+//		public Integer getResult(Integer v) {
+//			res = doCalculate(v);
+//			return res ;
+//		}
+	}
+	
+	
+	public Integer calculate(final Integer param) throws Exception{
+		
+		if(results.get(param) == null){
+			Callable<Integer> cal = new Callable<Integer>() {
+				
+				@Override
+				public Integer call() throws Exception {
+					return doCalculate(param);
+				}
+			};
+			
+			FutureTask<Integer> ft = new FutureTask<Integer>(cal);
+			
+				Future<Integer> f= results.putIfAbsent(param, ft);
+				if(f == null){
+					f = ft;
+					ft.run();
+				}
+			return f.get();
+		}
+		
+		return results.get(param).get();
+	}
+	
+	
+//	public Integer calculate(final Integer param) throws Exception{
+//		
+//		
+//		final Result r = new Result();
 //		
 //	    if(results.get(param) == null) {
-//	    	 
-//	    	Integer temp = results.
-//	    	if(temp == null){
-//	    		Integer ing= doCalculate(param);
-//	    		results.putIfAbsent(param,ing);
-//	    		return ing ;
-//	    	}else{
-//	    		results.put(param, temp);
-//	    		return temp;
+//	    	
+//	    	Thread dot = new Thread(new Runnable() {
+//				@Override
+//				public void run() {
+//					
+//					r.setResult(doCalculate(param));
+//					
+////					Result orin = results.putIfAbsent(param,r);
+////					
+////					if(orin == null){
+////						
+////						r.getResult(param);
+////					}else{
+////						r.setResult(orin.getResult()) ; 
+////					}
+//						
+//				}
+//			});
+//	    	
+//	    	Result orgin = results.putIfAbsent(param, r);
+//	    	
+//	    	if(null == orgin || null == orgin.getResult()){
+//		    	r.setCal(dot);
+//		    	dot.start();
+//		    	dot.join();
 //	    	}
 //
-//		    
+//
+//	    	return r.getResult();
 //	    }
 //
-//	    return results.get(param);
-		
-	
-//		
-//		if(temp.containsKey(param)){
-//			return results.get(param);
-//		}else{
-//			temp.put(param,new AtomicBoolean(true));
-//			
-//			if(temp.get(param).getAndSet(false)){
-//				Integer result = doCalculate(param);
-//				results.put(param, result);
-//
-//			}
-//
-//			return results.get(param);
-//		}
+//	    if(r.getCal().isAlive()){
+//	    	r.getCal().join();
+//	    }
+//	    
+//	    return results.get(param).getResult();
 //	    
 //	}
 
 
 	
-	public Integer calculate(final Integer param) throws Exception{ 
-//	    while(true) { 
-	        Future<Integer> f = results.get(param); 
-	        if(f == null) { 
-	            Callable<Integer> eval = new Callable<Integer>() { 
-	                public Integer call() throws Exception { 
-	                    return doCalculate(param); 
-	                } 
-	            }; 
-	            FutureTask<Integer> ft = new FutureTask<Integer>(eval); 
-	            f = results.putIfAbsent(param, ft); 
-	            if(f == null) { 
-	                f = ft; 
-	                ft.run(); 
-	            } 
-	        } 
-	         
-	        try { 
-	            return f.get(); 
-	        } catch(CancellationException e) { 
-	            results.remove(param, f); 
-	        } catch(ExecutionException e) { 
-	            try {
-					throw e.getCause();
-				} catch (Throwable e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} 
-	        }
-			return null; 
-	    } 
-//	} 
 	
+	
+	
+	
+	
+	
+	
+	
+//	public Integer calculate(final Integer param) throws Exception{ 
+//	    while(true) { 
+//	        Future<Integer> f = results.get(param); 
+//	        if(f == null) { 
+//	            Callable<Integer> eval = new Callable<Integer>() { 
+//	                public Integer call() throws Exception { 
+//	                    return doCalculate(param); 
+//	                } 
+//	            }; 
+//	            FutureTask<Integer> ft = new FutureTask<Integer>(eval); 
+//	            f = results.putIfAbsent(param, ft); 
+//	            if(f == null) { 
+//	                f = ft; 
+//	                ft.run(); 
+//	            } 
+//	        } 
+//	         
+//	        try { 
+//	            return f.get();
+//	            
+//	        } catch(CancellationException e) { 
+//	            results.remove(param, f); 
+//	        } catch(ExecutionException e) { 
+//	            try {
+//					throw e.getCause();
+//				} catch (Throwable e1) {
+//					// TODO Auto-generated catch block
+//					e1.printStackTrace();
+//				} 
+//	        }
+//			return null; 
+//	    } 
+//	} 
+//	
 	
 	private Integer doCalculate(Integer param) {
 		
 		System.out.println(" I am calculate "+param);
 		try {
-			Thread.currentThread().sleep(100);
+			Thread.sleep(100);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
