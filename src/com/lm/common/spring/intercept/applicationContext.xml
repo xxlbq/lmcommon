@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- business bean -->
+	<bean id="springMethodInterceptor" class="com.lm.common.spring.intercept.SpringMethodInterceptor"
+		abstract="false" lazy-init="default" autowire="default"
+		>
+	</bean>
+	<bean id="accountService" class="org.springframework.aop.framework.ProxyFactoryBean"
+		abstract="false"  lazy-init="default" autowire="default"
+		>
+		<property name="target">
+			<ref bean="accountServiceImpl" />
+		</property>
+		<property name="interceptorNames">
+			<list>
+				<value>loginAfterReturningAdvice</value>
+				<value>loginMethodBeforeAdvice</value>
+<!--				<value>loginThrowsAdvice</value>-->
+				<value>springMethodInterceptor</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="accountServiceImpl" class="com.lm.common.spring.intercept.AccountServiceImpl"
+		abstract="false"  lazy-init="default" autowire="default"
+		>
+<!--		   <property name="accountDao">-->
+<!--    <bean class="org.shirdrn.dao.AccountDao" />-->
+<!--   </property>-->
+	</bean>
+	
+	<bean id="loginMethodBeforeAdvice" class="com.lm.common.spring.intercept.LoginMethodBeforeAdvice"
+		abstract="false"  lazy-init="default" autowire="default"
+		>
+		
+	</bean>
+		<bean id="loginAfterReturningAdvice" class="com.lm.common.spring.intercept.LoginAfterReturningAdvice"
+		abstract="false"  lazy-init="default" autowire="default"
+		>
+		
+	</bean>
+</beans>
