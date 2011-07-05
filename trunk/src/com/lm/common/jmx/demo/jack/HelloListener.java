@@ -21,5 +21,7 @@ public class HelloListener implements NotificationListener {
                 hello.printHello(n.getMessage());      
                 }         
             }       
-        }}   
+        }
+    
+}   
 
