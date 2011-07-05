@@ -13,7 +13,7 @@ import com.sun.jdmk.comm.HtmlAdaptorServer;
 
 public class HelloAgent {
 	public static void main(String[] args) throws Exception {
-		//基于xml中的信息构建一个Registry    
+		//åŸºäºŽxmlä¸­çš„ä¿¡æ�¯æž„å»ºä¸€ä¸ªRegistry    
 		
 		Registry registry = Registry.getRegistry(null, null);
 		
@@ -21,19 +21,19 @@ public class HelloAgent {
 		registry.loadMetadata(stream);
 		stream.close();
 		
-		//由Registry得到一个MBeanServer    
+		//ç”±Registryå¾—åˆ°ä¸€ä¸ªMBeanServer    
 		MBeanServer server = registry.getMBeanServer();
 
-		//得到Hello在描述文件中的信息类，对应于xml文件<mbean>标签的name属性。    
+		//å¾—åˆ°Helloåœ¨æ��è¿°æ–‡ä»¶ä¸­çš„ä¿¡æ�¯ç±»ï¼Œå¯¹åº”äºŽxmlæ–‡ä»¶<mbean>æ ‡ç­¾çš„nameå±žæ€§ã€‚    
 		ManagedBean managed = registry.findManagedBean("Hello");
-		//创建ObjectName    
-		ObjectName helloName = new ObjectName("qqqqqqqqqqqqq"+ ":name=HelloWorld,port8083");
+		//åˆ›å»ºObjectName    
+		ObjectName helloName = new ObjectName("qqqqqqqqqqqqq"+ ":name=HelloWorld,port=8083");
 		
 		 Hello h = new Hello();
-		//得到ModelMBean    
+		//å¾—åˆ°ModelMBean    
 		ModelMBean hello = managed.createMBean(h);
 		
-		//注册MBean    
+		//æ³¨å†ŒMBean    
 		server.registerMBean(hello, helloName);
 		
 		
