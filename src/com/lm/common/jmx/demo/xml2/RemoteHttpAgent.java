@@ -41,12 +41,10 @@ public class RemoteHttpAgent {
 		}		
 		return (registry);
 	}	
-	
 	private MBeanServer createServer() {		
 		if (mserver == null) {			
 			try {				
 				mserver = Registry.getServer();			 
-				
 			}
 			catch (Throwable t) {	
 				t.printStackTrace(System.out);		
@@ -57,7 +55,7 @@ public class RemoteHttpAgent {
 	}
 	private void createHttpAdaptor(int port){	
 		madaptor =	new HtmlAdaptorServer();	 
-		//å�‘Bean Serveræ³¨å†Œé€‚é…�å™¨å¯¹è±¡	 
+		//向Bean Server注册适配器对象	 
 		try {	
 			mserver.registerMBean(madaptor, 	
 				new ObjectName("adaptor:protocol=HTTP"));	 
